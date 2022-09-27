@@ -14,6 +14,7 @@ screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 pestañeo = 0
 cont = 0
 
+
 run = 1
 while run:
     for event in pygame.event.get():
