@@ -9,3 +9,4 @@ SCREEN_HEIGHT = pygame.display.Info().current_h
 
 
 COLOR_CARA = (194,216,214)
+COLOR_ANGRY = (220,44,30)
