@@ -1,5 +1,5 @@
 import pygame
-from pygame.locals import KEYDOWN, K_ESCAPE, K_1, K_2, K_3, QUIT
+from pygame.locals import KEYDOWN, K_ESCAPE, K_1, K_2, K_3, K_4, QUIT
 
 from threading import Thread
 from time import sleep
@@ -17,7 +17,7 @@ class Cara():
         self.height = alto_screen
         self.width = ancho_screen
 
-        self.mode(0)
+        self.mode(3)
 
         self.thread()
 
@@ -30,6 +30,8 @@ class Cara():
 
         self.alto_ojos = escala[1]
         self.alto_boca = escala[1]*0.25
+
+        self.alto_blush = escala[1]*0.2
 
         self.posicion = [self.width*position[0], self.height*position[1]]
         self.punto = self.posicion.copy()
@@ -103,6 +105,15 @@ class Cara():
         if self.option == 2:
             pass
 
+        if self.option == 3:
+            pygame.draw.ellipse(self.screen, pr.COLOR_BLUSH,
+                    pygame.Rect(self.ojo1[0], self.alto*2,
+                                self.ancho, self.alto_blush))
+            pygame.draw.ellipse(self.screen, pr.COLOR_BLUSH,
+                    pygame.Rect(self.ojo2[0], self.alto*2,
+                                self.ancho, self.alto_blush))
+
+
 
     def thread(self):
         pestañeo = Thread(target=self.blink, daemon=True)
@@ -148,6 +159,10 @@ class Cara():
             self.scale([1/10, 3/9], [1/2, 3/7])
             self.color = (0, 0, 0)
             self.color_fondo = pr.COLOR_ANGRY
+        elif self.option == 3:
+            self.scale([1/10, 3/9], [1/2, 3/7])
+            self.color = (0, 0, 0)
+            self.color_fondo = pr.COLOR_CARA
 
 
 
@@ -174,6 +189,9 @@ while run:
 
                 if event.key == K_3:
                     cara.mode(2)
+
+                if event.key == K_4:
+                    cara.mode(3)
 
 
             elif event.type == QUIT:
