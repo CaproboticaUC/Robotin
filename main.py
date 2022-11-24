@@ -8,6 +8,8 @@ from random import randint
 
 import parametros as pr
 
+import os
+
 
 class Cara():
     def __init__(self, alto_screen, ancho_screen, screen) -> None:
@@ -16,6 +18,7 @@ class Cara():
 
         self.height = alto_screen
         self.width = ancho_screen
+        self.set_images()
 
         self.mode(3)
 
@@ -99,8 +102,7 @@ class Cara():
                                         self.ancho/10, self.ancho/10))
 
         if self.option == 1:
-            show = pygame.transform.scale(self.image, (self.width*8/10, self.height*7/10))
-            self.screen.blit(show, (self.width/10, self.height*2/10))
+            self.screen.blit(self.show, (self.width/10, self.height*2/10))
 
         if self.option == 2:
             pass
@@ -113,18 +115,20 @@ class Cara():
                     pygame.Rect(self.ojo2[0], self.alto*2,
                                 self.ancho, self.alto_blush))
 
-
+    def set_images(self):
+        self.images = []
+        for n in os.listdir('source/'):
+            self.images.append(pygame.transform.scale(pygame.image.load(f'source/{n}'), (self.width*8/10, self.height*7/10)))
+        image = Thread(target=self.show_image, daemon=True)
+        image.start()
 
     def thread(self):
         pestañeo = Thread(target=self.blink, daemon=True)
         pestañeo.start()
-        image = Thread(target=self.show_image, daemon=True)
-        image.start()
 
     def show_image(self):
         while True:
-            random = randint(1,2)
-            self.image = pygame.image.load(f'source/00{random}.png')
+            self.show = self.images[randint(0, len(self.images)-1)]
             sleep(5.1)
 
 
