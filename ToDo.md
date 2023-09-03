@@ -20,5 +20,5 @@
 * Capacidad de responder preguntas básicas
 * Pequeña base de datos de la UC
 * Generar una emoción asociada a la información y darsela como input a la interfáz
-### text-to-speech 
-*Transformar la respuesta generada a un archivo de audio y reproducirlo
+### Text-to-speech 
+* Transformar la respuesta generada a un archivo de audio y reproducirlo
