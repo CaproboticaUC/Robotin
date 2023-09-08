@@ -17,7 +17,10 @@
 * Recibir un input de audio y transformarlo a texto para ser procesado
 * (Idea) Recibir audio solo cuando la cara de la persona mueva los labios
 ### Procesamiento de la información
-* Capacidad de responder preguntas básicas
+* Capacidad de responder preguntas básicas - Encargado: Andrés
+     * FAISS - Vector store local para almacenar embeddings asociados a fragmentos de documentación del capitulo
+     * Retriever de Langchain busca fragmento (embedding) más cercano a la pregunta
+     * Utiliza GPT Turbo 3.5 cómo LLM para responder
 * Pequeña base de datos de la UC
 * Generar una emoción asociada a la información y darsela como input a la interfáz
 ### Text-to-speech 
